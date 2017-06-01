@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	.container
+		h5= 新增商品
+		form(class='form-horizontal', action='//localhost:3000/goods/adds/submit')
+			.form-group
+				label(class='col-sm-2 control-label', for='inputName') Name:
+				.col-sm-10
+					input(class='form-control', name='name', type='text', id='inputName', placeholder='商品名称')
+			.form-group
+				label(class='col-sm-2 control-label', for='inputURL') URL:
+				.col-sm-10
+					input(class='form-control', name='url', type='text', id='inputURL', placeholder='链接地址')
+			.form-group
+				label(class='col-sm-2 control-label', for='inputPrice') 价格:
+				.col-sm-10
+					input(class='form-control', name='price', type='text', id='inputPrice', placeholder='商品价格')
+			.form-group
+				div(class='col-sm-offset-2 col-sm-10')
+					.checkbox
+						label
+							input(type='checkbox', name='hot')
+							= '\t'
+							span 推荐商品
+			.form-group
+				div(class='col-sm-offset-2 col-sm-10')
+					button(type='submit', class='btn btn-info') 提交
+				

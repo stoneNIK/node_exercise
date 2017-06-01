@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	.container
+		p mongoDB /site 数据列表
+		div(class='panel panel-default')
+			.panel-body
+				form(class='form-inline', action='//localhost:3000/goods/search')
+					.form-group
+						input(name='name', class='form-control', placeholder='按名称查询')
+					= '\t'
+					button(type='submit', class='btn btn-default') 点击查询
+		table(class='table table-hover')
+			thead
+				tr
+					each _th in ['编号', '名称', '链接', '价格', '是否推荐']
+						th= _th
+			tbody
+				each _tr, index in tr_list
+					tr
+						td= index
+						td.td_name(title=_tr.name)= _tr.name
+						td.td_url
+							a(href=_tr.url, target='_blank') 商品链接地址
+						td= _tr.price
+						td= _tr.hot
+						td
+							a(href='//localhost:3000/goods/update?id='+_tr._id, class='btn btn-sm btn-info') 修改
+							= '\t'
+							a(href='//localhost:3000/goods/delete?name='+_tr.name, class='btn btn-sm btn-danger') 删除
