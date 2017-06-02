@@ -93,13 +93,14 @@ router.get('/adds/submit', function(req, res, next){
 // 查询商品 - 接口
 router.get('/search', function(req, res, next){
 	if(req.query){
-		var searchQuery = req.query;
-		if(searchQuery.name){
-			searchQuery['name'] = new RegExp(req.query.name);
+		var _query = req.query, 
+			searchQuery = {};
+		if(_query.name){
+			searchQuery['name'] = new RegExp(_query.name);
 			MongoClient.connect(DB_CONN_STR, function(err, db){
 				selectData(db, searchQuery, function(result){
 					// res.send(result);
-					res.render('lists', { title: '商品列表', type: 'goods', tr_list: result });
+					res.render('lists', { title: '商品列表', type: 'goods', searchValue: _query['name'], tr_list: result });
 					db.close();
 				});
 			});
